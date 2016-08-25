@@ -3,13 +3,8 @@
 
 /* ALBUMS (SINGULAR) CONTROLLER */
 
-juke.controller('AlbumCtrl', function ($scope, $log, PlayerFactory, AlbumFactory, $stateParams) {
-    var albumId = $stateParams.albumId
-    AlbumFactory.fetchById(albumId)
-    .then(function (album) {
-      $scope.album = album;
-    })
-    .catch($log.error);
+juke.controller('AlbumCtrl', function ($scope, PlayerFactory, album) {
+  $scope.album = album;
 
   // main toggle
   $scope.toggle = function (song) {
@@ -34,14 +29,8 @@ juke.controller('AlbumCtrl', function ($scope, $log, PlayerFactory, AlbumFactory
 
 /* ALBUMS (PLURAL) CONTROLLER */
 
-juke.controller('AlbumsCtrl', function ($scope, $log, $rootScope, PlayerFactory, AlbumFactory) {
+juke.controller('AlbumsCtrl', function ($scope, albums) {
 
-  $scope.showMe = true;
-
-  AlbumFactory.fetchAll()
-  .then(function (albums) {
-    $scope.albums = albums;
-  })
-  .catch($log.error); // $log service can be turned on and off; also, pre-bound
+  $scope.albums = albums;
 
 });
