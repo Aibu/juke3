@@ -1,5 +1,10 @@
-juke.config(function ($stateProvider) {
+juke.config(function ($stateProvider, $urlRouterProvider, $locationProvider) {
 
+  $locationProvider.html5Mode(true).hashPrefix('*')
+  $urlRouterProvider.when('/', '/albums')
+  $urlRouterProvider.when('/artist/:artistId', function($stateParams){
+    return '/artist/' + $stateParams.artistId + "/albums"
+  })
   $stateProvider.state('albums', {
     url: '/albums',
     templateUrl:'/templates/albums.html',
@@ -41,14 +46,14 @@ juke.config(function ($stateProvider) {
         return ArtistFactory.fetchById($stateParams.artistId)
       }
     },
-    controller: 'ArtistCtrl'
+    controller: 'ArtistCtrl',
   })
   .state('artist.songs', {
-    url: '/artist/:artistId/songs',
+    url: '/songs',
     templateUrl: '/templates/artistsongs.html'
   })
   .state('artist.albums', {
-    url: '/artist/:artistId/albums',
+    url: '/albums',
     templateUrl: '/templates/artistalbums.html'
   })
 
