@@ -2,14 +2,8 @@
 
 /* ARTISTS (PLURAL) CONTROLLER */
 
-juke.controller('ArtistsCtrl', function ($scope, $log, $rootScope, ArtistFactory) {
-
-  ArtistFactory.fetchAll()
-  .then(function (artists) {
-    $scope.artists = artists;
-  })
-  .catch($log.error);
-
+juke.controller('ArtistsCtrl', function ($scope, $log, $rootScope, artists) {
+  $scope.artists = artists;
 });
 
 /* ARTIST (SINGULAR) CONTROLLER */
