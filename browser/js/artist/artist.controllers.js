@@ -8,13 +8,13 @@ juke.controller('ArtistsCtrl', function ($scope, $log, $rootScope, artists) {
 
 /* ARTIST (SINGULAR) CONTROLLER */
 
-juke.controller('ArtistCtrl', function ($scope, $log, ArtistFactory, PlayerFactory, $rootScope, $stateParams) {
+juke.controller('ArtistCtrl', function ($scope, $log, ArtistFactory, PlayerFactory, $rootScope, $stateParams, artist) {
 
 var artistId = $stateParams.artistId
-ArtistFactory.fetchById(artistId)
-.then(function(artist){
+// ArtistFactory.fetchById(artistId)
+// .then(function(artist){
   $scope.artist = artist;
-})
+//})
   $scope.getCurrentSong = function () {
     return PlayerFactory.getCurrentSong();
   };
