@@ -14,8 +14,13 @@ juke.controller('ArtistsCtrl', function ($scope, $log, $rootScope, ArtistFactory
 
 /* ARTIST (SINGULAR) CONTROLLER */
 
-juke.controller('ArtistCtrl', function ($scope, $log, ArtistFactory, PlayerFactory, $rootScope) {
+juke.controller('ArtistCtrl', function ($scope, $log, ArtistFactory, PlayerFactory, $rootScope, $stateParams) {
 
+var artistId = $stateParams.artistId
+ArtistFactory.fetchById(artistId)
+.then(function(artist){
+  $scope.artist = artist;
+})
   $scope.getCurrentSong = function () {
     return PlayerFactory.getCurrentSong();
   };
